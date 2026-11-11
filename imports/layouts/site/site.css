@@ -1,0 +1,8 @@
+#Site{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  #Main{
+    flex: 1;
+  }
+}

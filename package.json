@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
+    "test": "node --test tests/*.test.js",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {

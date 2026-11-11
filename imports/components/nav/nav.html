@@ -1,0 +1,8 @@
+<template name="nav">
+  <nav id="Nav">
+    <a class="navHome" href="/">{{studio.name}}</a>
+    {{#each link in nav}}
+      <a class="navLink" href="{{link.href}}">{{link.label}}</a>
+    {{/each}}
+  </nav>
+</template>
