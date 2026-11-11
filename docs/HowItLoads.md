@@ -12,7 +12,8 @@ reading every response. Where something hasn't been observed yet it says so.
   each `.html` into JavaScript. Rspack hands every `.html` it meets over to Meteor and keeps an empty stand-in.
 - So a page's **js and css load on demand**, in their own small chunk, the first time it's visited, but **every
   template is sent with the first page load**, including pages not visited yet. They're small (a few hundred bytes
-  each).
+  each). Decided 2026-11-11: accept this rather than drop Rspack. The eager part is about 2.4 KB against Meteor's own
+  ~120 KB.
 
 ## The import graph
 
