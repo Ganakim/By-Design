@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .plate{fill: #14171c}
+    .mark{fill: #2fe68c}
+    @media (prefers-color-scheme: dark){
+      .plate{fill: #16161d}
+      .mark{fill: #a57cf0}
+    }
+  </style>
+  <!-- the same cut corners as the site's buttons -->
+  <path class="plate" d="M6 0H32V26L26 32H0V6Z"/>
+  <text class="mark" x="16" y="23" text-anchor="middle" font-family="system-ui, sans-serif" font-size="21" font-weight="300">B</text>
+</svg>

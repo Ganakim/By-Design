@@ -12,10 +12,8 @@
     gap: var(--space-loose);
   }
   p{
-    font-size: var(--size-label);
-    font-weight: var(--weight-strong);
-    letter-spacing: .14em;
-    text-transform: uppercase;
+    font-size: var(--size-small);
+    letter-spacing: var(--tracking-text);
     color: var(--text-dim);
   }
 }

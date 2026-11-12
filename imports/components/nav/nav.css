@@ -8,8 +8,7 @@
   .wordmark{
     font-size: 1.45rem;
     font-weight: var(--weight-thin);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
+    letter-spacing: var(--tracking-text);
     line-height: 1;
     color: var(--text);
     text-decoration: none;
@@ -18,7 +17,7 @@
       margin-top: .5em;
       font-size: .42em;
       font-weight: var(--weight-light);
-      letter-spacing: .62em;
+      letter-spacing: .12em;
       color: var(--text-dim);
     }
   }
@@ -34,17 +33,16 @@
     position: relative;
     display: inline-block;
     padding-block: .3em;
-    font-size: var(--size-label);
-    font-weight: var(--weight-strong);
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
+    font-size: var(--size-small);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-text);
     color: var(--text-dim);
     text-decoration: none;
     &::after{
       content: "";
       position: absolute;
       left: 0;
-      right: var(--tracking-label);
+      right: 0;
       bottom: -.15em;
       height: 2px;
       border-radius: 2px;
