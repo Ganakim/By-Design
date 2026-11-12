@@ -12,7 +12,8 @@ $failed = "$Root\failed"
 
 Remove-Item $next, $old -Recurse -Force -ErrorAction SilentlyContinue
 New-Item -ItemType Directory $next | Out-Null
-tar -xzf $From -C $next
+# .bin holds command shims, symlinks from the linux build that windows won't make; nothing runs them here
+tar -xzf $From -C $next --exclude "*/node_modules/.bin/*"
 if ($LASTEXITCODE) { throw "Couldn't unpack $From (tar $LASTEXITCODE)." }
 Set-Content "$next\commit.txt" $Commit
 
