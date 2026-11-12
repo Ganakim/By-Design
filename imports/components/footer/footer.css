@@ -1,3 +1,17 @@
 #Footer{
-  padding-block: 1rem;
+  .footerRow{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-tight) var(--space);
+    padding-block: var(--space-loose) calc(var(--space-loose) + env(safe-area-inset-bottom, 0px));
+  }
+  p{
+    font-size: var(--size-label);
+    font-weight: var(--weight-strong);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
 }

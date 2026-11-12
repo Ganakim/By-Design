@@ -1,7 +1,11 @@
 #Site{
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  > *{
+    width: min(100% - 2 * var(--gutter), var(--page-width));
+    margin-inline: auto;
+  }
   #Main{
     flex: 1;
   }

@@ -1,0 +1,40 @@
+/* fixed behind the whole page: faceted light, and two patches of etched traces pinned to opposite corners
+   so they show at any screen shape. a glint runs along the live ones */
+#Backdrop{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  --top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M500 90H300L260 130V300'/%3E%3Cpath d='M500 260H380L350 290V420'/%3E%3Cpath d='M500 30H430L410 50H340'/%3E%3Cpath d='M160 0V60L190 90H240'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='260' cy='300' r='4'/%3E%3Ccircle cx='350' cy='420' r='4'/%3E%3Ccircle cx='340' cy='50' r='4'/%3E%3Ccircle cx='240' cy='90' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  --bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M0 260H140L180 300H260L290 330V500'/%3E%3Cpath d='M60 500V380L90 350'/%3E%3Cpath d='M0 120H70L100 150V200'/%3E%3Cpath d='M0 420H40L60 400H110'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='90' cy='350' r='4'/%3E%3Ccircle cx='100' cy='200' r='4'/%3E%3Ccircle cx='110' cy='400' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  --top-live: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg fill='none' stroke='black' stroke-width='2.2'%3E%3Cpath d='M500 90H300L260 130V300'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='260' cy='300' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  --bottom-live: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cg fill='none' stroke='black' stroke-width='2.2'%3E%3Cpath d='M0 260H140L180 300H260L290 330V500'/%3E%3C/g%3E%3Cg fill='black'%3E%3C/g%3E%3C/svg%3E");
+  div{
+    position: absolute;
+    inset: 0;
+    mask-size: min(32rem, 85vw) auto;
+    mask-position: right top, left bottom;
+    mask-repeat: no-repeat;
+  }
+  .facets{
+    background:
+      conic-gradient(from 200deg at 92% 6%, transparent 0 18deg, var(--facet) 18deg 46deg, transparent 46deg 74deg, var(--facet-strong) 74deg 112deg, transparent 112deg 150deg, var(--facet) 150deg 170deg, transparent 170deg),
+      conic-gradient(from 20deg at 4% 98%, transparent 0 20deg, var(--facet-strong) 20deg 52deg, transparent 52deg 90deg, var(--facet) 90deg 120deg, transparent 120deg);
+  }
+  .traces{
+    background: var(--trace);
+    mask-image: var(--top), var(--bottom);
+  }
+  .signal{
+    mask-image: var(--top-live), var(--bottom-live);
+    background:
+      linear-gradient(100deg, transparent 35%, var(--glass-bright) 48%, var(--glass) 52%, transparent 65%) 0 0 / 300% 100% no-repeat,
+      color-mix(in oklab, var(--glass) 45%, transparent);
+    animation: backdropGlint 4.5s linear infinite;
+  }
+}
+
+@keyframes backdropGlint{
+  from{background-position: 120% 0, 0 0}
+  to{background-position: -20% 0, 0 0}
+}

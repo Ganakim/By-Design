@@ -1,8 +1,164 @@
-/* reset only for now. design tokens come in phase 2 */
+/* reset, the font, and the design tokens. every colour, size and space the components use is named here */
+@font-face{
+  font-family: 'Outfit';
+  src: url('/fonts/outfit.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root{
+  color-scheme: light;
+
+  /* surfaces: structure, never meaning */
+  --surface-back: #eef1f4;
+  --surface-panel: rgb(255 255 255 / .55);
+  --surface-raised: #ffffff;
+  --surface-sunken: rgb(20 30 40 / .1);
+
+  /* text */
+  --text: #14171c;
+  --text-dim: #4b525d;
+
+  /* lines. a seam is a groove over a ridge; a panel's edge is lit from above */
+  --groove: rgb(30 40 55 / .17);
+  --ridge: rgb(255 255 255 / .95);
+  --edge-lit: #ffffff;
+  --edge-shade: rgb(20 30 40 / .14);
+  --sheen: rgb(255 255 255 / .55);
+  --mark: rgb(75 82 93 / .55);
+  --shadow: rgb(0 0 0 / .5);
+
+  /* glass: anything you can act on, or that's live. rare, so it means something */
+  --glass-bright: #a6fcd0;
+  --glass: #2fe68c;
+  --glass-deep: #0b9e57;
+  --glow: rgb(47 230 140 / .55);
+  --glass-text: #08703c;
+  --on-glass: #03160c;
+
+  /* the backdrop */
+  --facet: rgb(10 30 40 / .035);
+  --facet-strong: rgb(10 30 40 / .065);
+  --trace: rgb(20 30 40 / .13);
+
+  /* type */
+  --font: 'Outfit', system-ui, sans-serif;
+  --size-label: .7rem;
+  --size-small: .85rem;
+  --size-body: 1rem;
+  --size-lead: clamp(1.1rem, 2.4vw, 1.3rem);
+  --size-heading: clamp(1.5rem, 3.6vw, 2rem);
+  --size-display: clamp(2.4rem, 7.5vw, 4.6rem);
+  --weight-thin: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-strong: 500;
+  --tracking-label: .18em;
+  --tracking-wide: .3em;
+
+  /* space */
+  --space-tight: .5rem;
+  --space: 1rem;
+  --space-loose: 1.5rem;
+  --space-section: clamp(2.75rem, 8vw, 5rem);
+  --gutter: clamp(16px, 4vw, 40px);
+  --page-width: 1120px;
+  --measure: 60ch;
+
+  /* shape */
+  --radius-panel: 12px;
+  --cut: .6em;
+  --mark-size: 6px;
+
+  /* motion */
+  --quick: .2s;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --surface-back: #0b0b0f;
+    --surface-panel: rgb(20 20 27 / .55);
+    --surface-raised: #16161d;
+    --surface-sunken: rgb(255 255 255 / .08);
+    --text: #ecebf3;
+    --text-dim: #a4a3b4;
+    --groove: rgb(0 0 0 / .9);
+    --ridge: rgb(255 255 255 / .07);
+    --edge-lit: rgb(255 255 255 / .26);
+    --edge-shade: rgb(0 0 0 / .5);
+    --sheen: rgb(255 255 255 / .06);
+    --mark: rgb(164 163 180 / .5);
+    --shadow: rgb(0 0 0 / .8);
+    --glass-bright: #a57cf0;
+    --glass: #7c4ddb;
+    --glass-deep: #4c1d95;
+    --glow: rgb(139 92 246 / .6);
+    --glass-text: #c4a1ff;
+    --on-glass: #ffffff;
+    --facet: rgb(255 255 255 / .025);
+    --facet-strong: rgb(255 255 255 / .048);
+    --trace: rgb(236 235 243 / .09);
+  }
+}
+
 *, *::before, *::after{
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   margin: 0;
+  background: var(--surface-back);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--size-body);
+  font-weight: var(--weight-light);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p{
+  margin: 0;
+}
+
+h1, h2, h3{
+  font-weight: var(--weight-light);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+a{
+  color: var(--glass-text);
+}
+
+/* every divider is a seam: recessed, thin, fading out at the ends */
+hr{
+  height: 2px;
+  margin: 0;
+  border: 0;
+  background: linear-gradient(var(--groove) 0 1px, var(--ridge) 1px 2px);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+:focus-visible{
+  outline: 2px solid var(--glass-text);
+  outline-offset: 3px;
+}
+
+::selection{
+  background: var(--glass);
+  color: var(--on-glass);
+}
+
+/* the motion switch, or a system that asks for less motion, sets this */
+.still{
+  scroll-behavior: auto;
+  *, *::before, *::after{
+    animation: none !important;
+    transition: none !important;
+  }
 }

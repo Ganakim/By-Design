@@ -1,0 +1,34 @@
+/* a state with no number to show: light runs along the segments while it's live */
+.status{
+  display: grid;
+  gap: .4rem;
+  --segments: repeating-linear-gradient(90deg, #000 0 .55rem, transparent .55rem .75rem);
+  .statusLabel{
+    font-size: var(--size-label);
+    font-weight: var(--weight-strong);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--glass-text);
+  }
+  .statusGlow{
+    display: block;
+    filter: drop-shadow(0 0 .25rem var(--glow));
+  }
+  .statusBar{
+    display: block;
+    height: .5rem;
+    background: var(--surface-sunken);
+    mask-image: var(--segments);
+    i{
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--glass-deep) 20%, var(--glass) 45%, var(--glass-bright) 50%, var(--glass) 55%, var(--glass-deep) 80%, transparent) 30% 0 / 40% 100% no-repeat;
+      animation: statusRun 2.4s ease-in-out infinite alternate;
+    }
+  }
+}
+
+@keyframes statusRun{
+  from{background-position: 0 0}
+  to{background-position: 100% 0}
+}

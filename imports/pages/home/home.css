@@ -1,3 +1,116 @@
 #Home{
-  padding-block: 2rem;
+  display: grid;
+  gap: var(--space-section);
+  padding-block: var(--space-section);
+  section{
+    scroll-margin-top: var(--space-loose);
+  }
+  .eyebrow{
+    font-size: var(--size-label);
+    font-weight: var(--weight-strong);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--glass-text);
+  }
+  h2{
+    font-size: var(--size-heading);
+  }
+  h3{
+    font-size: 1.2rem;
+    font-weight: var(--weight-regular);
+  }
+  .panel p{
+    font-size: .95rem;
+    color: var(--text-dim);
+  }
+  .actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+  }
+
+  .hero{
+    display: grid;
+    justify-items: start;
+    gap: var(--space);
+    padding-block: clamp(1rem, 5vw, 3rem) 0;
+    h1{
+      max-width: 14ch;
+      font-size: var(--size-display);
+      font-weight: var(--weight-thin);
+      letter-spacing: -.01em;
+      line-height: 1.02;
+    }
+    .lead{
+      max-width: var(--measure);
+      font-size: var(--size-lead);
+      color: var(--text-dim);
+    }
+    .actions{
+      margin-top: var(--space-tight);
+    }
+  }
+
+  #Make{
+    display: grid;
+    gap: var(--space-loose);
+    .makeGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+      gap: var(--space-loose);
+    }
+  }
+
+  #Mechaclasm{
+    .feature{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: var(--space-loose) 2.5rem;
+      padding: clamp(.25rem, 2vw, 1rem);
+    }
+    .featureText{
+      display: grid;
+      gap: var(--space-tight);
+      max-width: 34rem;
+      h2{
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: var(--weight-thin);
+        letter-spacing: .04em;
+      }
+      p{
+        font-size: var(--size-lead);
+      }
+    }
+    .featureSide{
+      display: grid;
+      justify-items: start;
+      gap: var(--space-loose);
+      min-width: min(100%, 15rem);
+    }
+    .status{
+      width: 100%;
+    }
+  }
+
+  /* heading on the left, text on the right; stacks when narrow */
+  .split{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--space) var(--space-loose);
+    > p, .contactBody > p{
+      max-width: var(--measure);
+      font-size: var(--size-lead);
+      color: var(--text-dim);
+    }
+    @media (max-width: 720px){
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  .contactBody{
+    display: grid;
+    gap: var(--space-loose);
+    justify-items: start;
+  }
 }

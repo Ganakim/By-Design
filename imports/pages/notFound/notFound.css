@@ -1,3 +1,23 @@
 #NotFound{
-  padding-block: 2rem;
+  display: grid;
+  justify-items: start;
+  gap: var(--space);
+  padding-block: clamp(3rem, 12vw, 8rem);
+  .eyebrow{
+    font-size: var(--size-label);
+    font-weight: var(--weight-strong);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--glass-text);
+  }
+  h1{
+    font-size: var(--size-display);
+    font-weight: var(--weight-thin);
+  }
+  .body{
+    max-width: var(--measure);
+    margin-bottom: var(--space-tight);
+    font-size: var(--size-lead);
+    color: var(--text-dim);
+  }
 }

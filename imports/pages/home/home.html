@@ -1,5 +1,68 @@
 <template name="home">
-  <section id="Home">
-    <h1>{{heading}}</h1>
-  </section>
+  <div id="Home">
+    <section class="hero">
+      <p class="eyebrow">{{hero.eyebrow}}</p>
+      <h1>{{hero.title}}</h1>
+      <p class="lead">{{hero.lead}}</p>
+      <div class="actions">
+        {{> action hero.primary}}
+        {{> action hero.secondary}}
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="Make" aria-labelledby="MakeHeading">
+      <h2 id="MakeHeading">{{make.heading}}</h2>
+      <div class="makeGrid">
+        {{#each item in make.items}}
+          {{#panel}}
+            <span class="eyebrow">{{item.tag}}</span>
+            <h3>{{item.title}}</h3>
+            <p>{{item.text}}</p>
+          {{/panel}}
+        {{/each}}
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="Mechaclasm" aria-labelledby="MechaclasmHeading">
+      {{#panel}}
+        <div class="feature">
+          <div class="featureText">
+            <span class="eyebrow">{{mechaclasm.tag}}</span>
+            <h2 id="MechaclasmHeading">{{mechaclasm.title}}</h2>
+            <p>{{mechaclasm.text}}</p>
+          </div>
+          <div class="featureSide">
+            {{> status label=mechaclasm.status}}
+            {{> action mechaclasm.link}}
+          </div>
+        </div>
+      {{/panel}}
+    </section>
+
+    <hr>
+
+    <section id="About" class="split" aria-labelledby="AboutHeading">
+      <h2 id="AboutHeading">{{about.heading}}</h2>
+      <p>{{about.text}}</p>
+    </section>
+
+    <hr>
+
+    <section id="Contact" class="split" aria-labelledby="ContactHeading">
+      <h2 id="ContactHeading">{{contact.heading}}</h2>
+      <div class="contactBody">
+        <p>{{contact.text}}</p>
+        <div class="actions">
+          {{> action contact.email}}
+          {{#each profile in contact.profiles}}
+            {{> action profile}}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  </div>
 </template>

@@ -1,5 +1,9 @@
 <template name="footer">
   <footer id="Footer">
-    <p>{{studio.legalName}}, {{studio.place}}, {{year}}</p>
+    <hr>
+    <div class="footerRow">
+      <p>{{studio.legalName}} · {{studio.place}} · {{year}}</p>
+      {{> switch label="Motion" on=moving toggle=toggleMotion}}
+    </div>
   </footer>
 </template>

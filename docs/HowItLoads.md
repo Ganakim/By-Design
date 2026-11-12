@@ -33,17 +33,26 @@ client/main.js
    │      │      └── lib/routes.js
    │      │             ├┄┄▶ imports/pages/home/home.js          '/'
    │      │             │       ├── home.html, home.css
-   │      │             │       └── imports/content/site.js
+   │      │             │       ├── imports/content/site.js
+   │      │             │       ├── imports/components/panel/panel.js
+   │      │             │       ├── imports/components/action/action.js
+   │      │             │       └── imports/components/status/status.js
    │      │             └┄┄▶ imports/pages/notFound/notFound.js   anything else
    │      │                     ├── notFound.html, notFound.css
-   │      │                     └── imports/content/site.js
+   │      │                     ├── imports/content/site.js
+   │      │                     └── imports/components/action/action.js
+   │      ├── imports/components/backdrop/backdrop.js
    │      ├── imports/components/nav/nav.js
    │      │      ├── nav.html, nav.css
    │      │      └── imports/content/site.js
    │      └── imports/components/footer/footer.js
    │             ├── footer.html, footer.css
-   │             └── imports/content/site.js
+   │             ├── imports/content/site.js
+   │             ├── lib/motion.js
+   │             └── imports/components/switch/switch.js
    └── lib/router.js             (same module as above, runs once)
+
+public/fonts/outfit.woff2        not imported: fetched by the browser when main.css asks for it
 
 package.json  meteor.mainModule.server
    │
@@ -257,6 +266,18 @@ id.
 Oddity: the production stylesheet starts with a comment banner about `client-rspack.js` being empty. It's text from a
 generated file that ends up in the css. It does nothing. It starts with `/*!`, the mark minifiers treat as "keep
 this comment", which is likely why it survives.
+
+### 11. The font, and `public/`
+
+`public/` is the one folder that isn't part of the import graph. Meteor serves whatever is in it at the site's root,
+untouched: `public/fonts/outfit.woff2` is `/fonts/outfit.woff2`. Nothing imports it. `main.css` has an `@font-face`
+naming that address, and the browser fetches it the first time some text needs the font. It was observed coming back
+as `font/woff2`, 32 KB. That one file holds every weight, from thin to bold, for Latin text. The licence that allows
+serving it is beside it, in `OFL.txt`.
+
+A component used several times on a page (`panel`, `action`, `status`, `switch`) can't scope its css under an id,
+because an id must be unique. Those are scoped by a class with the component's name instead (`.panel{…}`). Components
+used once (`#Nav`, `#Footer`, `#Backdrop`) and pages keep the id.
 
 ## While developing
 

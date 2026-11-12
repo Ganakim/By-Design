@@ -1,4 +1,62 @@
 #Nav{
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space) var(--space-loose);
+  padding-block: var(--space-loose);
+  .wordmark{
+    font-size: 1.45rem;
+    font-weight: var(--weight-thin);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--text);
+    text-decoration: none;
+    small{
+      display: block;
+      margin-top: .5em;
+      font-size: .42em;
+      font-weight: var(--weight-light);
+      letter-spacing: .62em;
+      color: var(--text-dim);
+    }
+  }
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem 1.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .navLink{
+    position: relative;
+    display: inline-block;
+    padding-block: .3em;
+    font-size: var(--size-label);
+    font-weight: var(--weight-strong);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    &::after{
+      content: "";
+      position: absolute;
+      left: 0;
+      right: var(--tracking-label);
+      bottom: -.15em;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--glass);
+      box-shadow: 0 0 .6em var(--glow);
+      scale: 0 1;
+      transform-origin: left;
+      transition: scale var(--quick);
+    }
+    &:hover, &:focus-visible{
+      color: var(--text);
+      &::after{scale: 1 1;}
+    }
+  }
 }

@@ -2,6 +2,7 @@ import './site.html'
 import './site.css'
 import {Template} from 'meteor/templating'
 import Router from '/lib/router'
+import '/imports/components/backdrop/backdrop'
 import '/imports/components/nav/nav'
 import '/imports/components/footer/footer'
 

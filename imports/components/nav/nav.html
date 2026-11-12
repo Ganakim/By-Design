@@ -1,8 +1,10 @@
 <template name="nav">
-  <nav id="Nav">
-    <a class="navHome" href="/">{{studio.name}}</a>
-    {{#each link in nav}}
-      <a class="navLink" href="{{link.href}}">{{link.label}}</a>
-    {{/each}}
+  <nav id="Nav" aria-label="Main">
+    <a class="wordmark" href="/">{{studio.name}}<small>{{studio.suffix}}</small></a>
+    <ul>
+      {{#each link in nav}}
+        <li><a class="navLink" href="{{link.href}}">{{link.label}}</a></li>
+      {{/each}}
+    </ul>
   </nav>
 </template>
