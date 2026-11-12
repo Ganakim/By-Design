@@ -54,15 +54,18 @@ line.)
 **mac**
 
 ```sh
-scp -P 2222 -i ~/.ssh/mechaclasm_deploy -r deploy server@mechaclasm-game.by-design.dev:C:/Users/Server/bydesign-deploy
+ssh -p 2222 -i ~/.ssh/mechaclasm_deploy server@mechaclasm-game.by-design.dev 'mkdir "D:\By Design\deploy"'
+scp -P 2222 -i ~/.ssh/mechaclasm_deploy deploy/* "server@mechaclasm-game.by-design.dev:D:/By Design/deploy/"
 ```
 
 **server**
 
 ```powershell
-cd C:\Users\Server\bydesign-deploy
+cd "D:\By Design\deploy"
 powershell -ExecutionPolicy Bypass -File setup.ps1 -RunnerToken <token>
 ```
+
+nginx runs as SYSTEM and only SYSTEM may signal it, so the script reloads it through a one-off scheduled task.
 
 **Check:**
 
