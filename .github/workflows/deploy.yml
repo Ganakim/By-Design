@@ -62,6 +62,7 @@ jobs:
           name: site
           path: ${{ runner.temp }}
 
+      # from cmd: shell: powershell runs a wrapper script of its own, which NETWORK SERVICE's execution policy refuses
       - name: Swap it in
-        shell: powershell
+        shell: cmd
         run: powershell -NoProfile -ExecutionPolicy Bypass -File deploy/deploy.ps1 -From "${{ runner.temp }}\site.tar.gz" -Commit ${{ github.sha }}
