@@ -63,12 +63,16 @@ if (-not (Select-String -Path $conf -Pattern "server_name by-design.dev;" -Quiet
   Push-Location $nginx
   cmd /c "nginx.exe -t 2>&1"
   $ok = $LASTEXITCODE -eq 0
-  if ($ok) { cmd /c "nginx.exe -s reload 2>&1" }
   Pop-Location
   if (-not $ok) {
     Copy-Item "$conf.before-bydesign" $conf -Force
     throw "nginx didn't accept the new blocks, so the old config is back and nothing was reloaded."
   }
+  # nginx runs as SYSTEM (NSSM) and only SYSTEM may signal it, so the reload goes through a one-off task as SYSTEM
+  schtasks /create /tn bydesign-nginx-reload /ru SYSTEM /sc once /st 00:00 /f /tr "cmd /c cd /d $nginx && nginx.exe -s reload" 2>$null | Out-Null
+  schtasks /run /tn bydesign-nginx-reload | Out-Null
+  Start-Sleep -Seconds 3
+  schtasks /delete /tn bydesign-nginx-reload /f | Out-Null
   Write-Host "nginx reloaded with by-design.dev's blocks (the old config is $conf.before-bydesign)."
 }
 
