@@ -49,6 +49,7 @@ client/main.js
    │             ├── footer.html, footer.css
    │             ├── imports/content/site.js
    │             ├── lib/motion.js
+   │             ├── lib/theme.js
    │             └── imports/components/switch/switch.js
    └── lib/router.js             (same module as above, runs once)
 

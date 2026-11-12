@@ -7,39 +7,42 @@
 }
 
 :root{
-  color-scheme: light;
+  /* follows the system unless lib/theme.js pins it. each colour is light-dark(light, dark) */
+  color-scheme: light dark;
+  &.light{color-scheme: light;}
+  &.dark{color-scheme: dark;}
 
   /* surfaces: structure, never meaning */
-  --surface-back: #eef1f4;
-  --surface-panel: rgb(255 255 255 / .55);
-  --surface-raised: #ffffff;
-  --surface-sunken: rgb(20 30 40 / .1);
+  --surface-back: light-dark(#eef1f4, #0b0b0f);
+  --surface-panel: light-dark(rgb(255 255 255 / .55), rgb(20 20 27 / .55));
+  --surface-raised: light-dark(#ffffff, #16161d);
+  --surface-sunken: light-dark(rgb(20 30 40 / .1), rgb(255 255 255 / .08));
 
   /* text */
-  --text: #14171c;
-  --text-dim: #4b525d;
+  --text: light-dark(#14171c, #ecebf3);
+  --text-dim: light-dark(#4b525d, #a4a3b4);
 
   /* lines. a seam is a groove over a ridge; a panel's edge is lit from above */
-  --groove: rgb(30 40 55 / .17);
-  --ridge: rgb(255 255 255 / .95);
-  --edge-lit: #ffffff;
-  --edge-shade: rgb(20 30 40 / .14);
-  --sheen: rgb(255 255 255 / .55);
-  --mark: rgb(75 82 93 / .55);
-  --shadow: rgb(0 0 0 / .5);
+  --groove: light-dark(rgb(30 40 55 / .17), rgb(0 0 0 / .9));
+  --ridge: light-dark(rgb(255 255 255 / .95), rgb(255 255 255 / .07));
+  --edge-lit: light-dark(#ffffff, rgb(255 255 255 / .26));
+  --edge-shade: light-dark(rgb(20 30 40 / .14), rgb(0 0 0 / .5));
+  --sheen: light-dark(rgb(255 255 255 / .55), rgb(255 255 255 / .06));
+  --mark: light-dark(rgb(75 82 93 / .55), rgb(164 163 180 / .5));
+  --shadow: light-dark(rgb(0 0 0 / .5), rgb(0 0 0 / .8));
 
   /* glass: anything you can act on, or that's live. rare, so it means something */
-  --glass-bright: #a6fcd0;
-  --glass: #2fe68c;
-  --glass-deep: #0b9e57;
-  --glow: rgb(47 230 140 / .55);
-  --glass-text: #08703c;
-  --on-glass: #03160c;
+  --glass-bright: light-dark(#a6fcd0, #a57cf0);
+  --glass: light-dark(#2fe68c, #7c4ddb);
+  --glass-deep: light-dark(#0b9e57, #4c1d95);
+  --glow: light-dark(rgb(47 230 140 / .55), rgb(139 92 246 / .6));
+  --glass-text: light-dark(#08703c, #c4a1ff);
+  --on-glass: light-dark(#03160c, #ffffff);
 
   /* the backdrop */
-  --facet: rgb(10 30 40 / .035);
-  --facet-strong: rgb(10 30 40 / .065);
-  --trace: rgb(20 30 40 / .13);
+  --facet: light-dark(rgb(10 30 40 / .035), rgb(255 255 255 / .025));
+  --facet-strong: light-dark(rgb(10 30 40 / .065), rgb(255 255 255 / .048));
+  --trace: light-dark(rgb(20 30 40 / .13), rgb(236 235 243 / .09));
 
   /* type */
   --font: 'Outfit', system-ui, sans-serif;
@@ -74,33 +77,6 @@
   --quick: .2s;
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
-    color-scheme: dark;
-    --surface-back: #0b0b0f;
-    --surface-panel: rgb(20 20 27 / .55);
-    --surface-raised: #16161d;
-    --surface-sunken: rgb(255 255 255 / .08);
-    --text: #ecebf3;
-    --text-dim: #a4a3b4;
-    --groove: rgb(0 0 0 / .9);
-    --ridge: rgb(255 255 255 / .07);
-    --edge-lit: rgb(255 255 255 / .26);
-    --edge-shade: rgb(0 0 0 / .5);
-    --sheen: rgb(255 255 255 / .06);
-    --mark: rgb(164 163 180 / .5);
-    --shadow: rgb(0 0 0 / .8);
-    --glass-bright: #a57cf0;
-    --glass: #7c4ddb;
-    --glass-deep: #4c1d95;
-    --glow: rgb(139 92 246 / .6);
-    --glass-text: #c4a1ff;
-    --on-glass: #ffffff;
-    --facet: rgb(255 255 255 / .025);
-    --facet-strong: rgb(255 255 255 / .048);
-    --trace: rgb(236 235 243 / .09);
-  }
-}
 
 *, *::before, *::after{
   box-sizing: border-box;

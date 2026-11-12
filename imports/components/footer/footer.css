@@ -7,6 +7,10 @@
     gap: var(--space-tight) var(--space);
     padding-block: var(--space-loose) calc(var(--space-loose) + env(safe-area-inset-bottom, 0px));
   }
+  .switches{
+    display: flex;
+    gap: var(--space-loose);
+  }
   p{
     font-size: var(--size-label);
     font-weight: var(--weight-strong);

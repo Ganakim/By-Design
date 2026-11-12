@@ -3,7 +3,10 @@
     <hr>
     <div class="footerRow">
       <p>{{studio.legalName}} · {{studio.place}} · {{year}}</p>
-      {{> switch label="Motion" on=moving toggle=toggleMotion}}
+      <div class="switches">
+        {{> switch label="Dark" on=dark toggle=toggleTheme}}
+        {{> switch label="Motion" on=moving toggle=toggleMotion}}
+      </div>
     </div>
   </footer>
 </template>

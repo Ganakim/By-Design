@@ -3,11 +3,14 @@ import './footer.css'
 import {Template} from 'meteor/templating'
 import {studio} from '/imports/content/site'
 import Motion from '/lib/motion'
+import Theme from '/lib/theme'
 import '/imports/components/switch/switch'
 
 Template.footer.helpers({
   studio,
   year: ()=>new Date().getFullYear(),
+  dark: Theme.dark,
+  toggleTheme: ()=>Theme.toggle,
   moving: Motion.on,
   toggleMotion: ()=>Motion.toggle
 })
