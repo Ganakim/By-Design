@@ -160,8 +160,17 @@ and on clicking through to `/nowhere`, only two new requests: `notFound`'s js ch
 `/` sent nothing: the home chunk was already loaded, and `import()` of a loaded module just hands it back.
 
 In production the same split holds. All of `/packages/`, `app.js` and `client-rspack.js` are merged and minified
-into the one hashed script (397 KB, 120 KB compressed, nearly all of it Meteor itself). Page chunks are still
-separate: `973.<hash>.js/.css` is home and `213.<hash>.js/.css` is notFound, each fetched only when visited.
+into the one hashed script. Page chunks are still separate, each fetched only when visited. Measured 2026-11-11, at
+the end of Phase 4:
+
+| File | Raw | Compressed | What |
+| --- | --- | --- | --- |
+| `<hash>.js` | 409 KB | 123 KB | everything up front; nearly all of it Meteor and Blaze |
+| `main.<hash>.css` | 10 KB | 3 KB | `client/main.css` and the layout's components |
+| `507.<hash>.js` / `.css` | 0.2 KB / 5.4 KB | | home |
+| `213.<hash>.js` / `.css` | 0.2 KB / 1.5 KB | | notFound |
+
+The chunk numbers come from Rspack and change when the import graph does, so don't rely on them.
 
 ### 5. `client/main.js`
 
@@ -259,6 +268,13 @@ what it read changes. `_migrateTemplate` is what puts it on `Template.nav`, and 
 Each component's css is nested under its id. Rspack compiles it, and for the browsers Meteor targets it **flattens
 the nesting**. `#Site{ #Main{flex: 1} }` is served in production as `#Site #Main{flex:1}`, and `padding-block` becomes
 `padding-top` plus `padding-bottom`. Nesting is safe to use. What reaches the browser is plain css.
+
+It does the same to `light-dark()`. Every colour token is written `--text: light-dark(#14171c, #ecebf3)`, and
+production serves `--text: var(--lightningcss-light, #14171c) var(--lightningcss-dark, #ecebf3)`, with a
+`prefers-color-scheme: dark` media query that switches which of the two variables is empty. It also noticed the
+`color-scheme` lines in `:root.light` and `:root.dark` and set the same two variables there, so the theme switch in
+the footer keeps working, and so does the whole theme in browsers older than `light-dark()` itself. Checked
+2026-11-11 with `meteor run --production`.
 
 `client/main.css` is in the main stylesheet linked from the shell. A page's css is in its own chunk, linked when the
 page first loads, and it stays linked after you navigate away. That's harmless while every rule is scoped to its own
