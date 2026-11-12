@@ -2,19 +2,20 @@
 .switch{
   display: inline-flex;
   align-items: center;
-  gap: .55rem;
-  padding: .2rem 0;
+  gap: .6em;
+  padding: .2em 0;
   font: inherit;
-  font-size: var(--size-small);
+  font-size: var(--size-body);
   color: var(--text-dim);
   background: none;
   border: 0;
   cursor: pointer;
   .slot{
     position: relative;
-    width: 1.9rem;
-    height: .95rem;
-    border-radius: .5rem;
+    /* in em, so the slot keeps to its label's size */
+    width: 2.2em;
+    height: 1.1em;
+    border-radius: .55em;
     background: var(--surface-sunken);
     box-shadow: inset 0 1px 1.5px var(--groove), 0 1px 0 var(--ridge);
     transition: background-color var(--quick);
@@ -22,11 +23,11 @@
       content: "";
       position: absolute;
       top: 50%;
-      left: .2rem;
-      width: .6rem;
-      height: .5rem;
+      left: .22em;
+      width: .7em;
+      height: .58em;
       translate: 0 -50%;
-      border-radius: .25rem;
+      border-radius: .29em;
       background: var(--text-dim);
       transition: left var(--quick), background var(--quick), box-shadow var(--quick);
     }
@@ -37,7 +38,7 @@
   &[aria-checked="true"] .slot{
     background: color-mix(in oklab, var(--glass) 18%, transparent);
     &::after{
-      left: calc(100% - .8rem);
+      left: calc(100% - .92em);
       background: linear-gradient(180deg, var(--glass-bright), var(--glass));
       box-shadow: 0 0 .5em var(--glow);
     }

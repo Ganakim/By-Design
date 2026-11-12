@@ -6,7 +6,7 @@
   gap: var(--space) var(--space-loose);
   padding-block: var(--space-loose);
   .wordmark{
-    font-size: 1.45rem;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
     font-weight: var(--weight-thin);
     letter-spacing: var(--tracking-text);
     line-height: 1;
@@ -24,7 +24,7 @@
   ul{
     display: flex;
     flex-wrap: wrap;
-    gap: .35rem 1.2rem;
+    gap: .35rem 1.6rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -33,7 +33,7 @@
     position: relative;
     display: inline-block;
     padding-block: .3em;
-    font-size: var(--size-small);
+    font-size: 1.1rem;
     font-weight: var(--weight-regular);
     letter-spacing: var(--tracking-text);
     color: var(--text-dim);

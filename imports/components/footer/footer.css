@@ -12,7 +12,7 @@
     gap: var(--space-loose);
   }
   p{
-    font-size: var(--size-small);
+    font-size: var(--size-body);
     letter-spacing: var(--tracking-text);
     color: var(--text-dim);
   }
