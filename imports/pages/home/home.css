@@ -54,10 +54,14 @@
   #Make{
     display: grid;
     gap: var(--space-loose);
+    /* flex, not grid, so a short last row stretches instead of leaving a hole */
     .makeGrid{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: var(--space-loose);
+      > *{
+        flex: 1 1 min(100%, 16rem);
+      }
     }
   }
 

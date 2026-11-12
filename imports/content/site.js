@@ -10,7 +10,6 @@ export const studio = {
 
 export const nav = [
   {label:'Work', href:'/#Make'},
-  {label:'Mechaclasm', href:'/#Mechaclasm'},
   {label:'About', href:'/#About'},
   {label:'Contact', href:'/#Contact'}
 ]
@@ -18,18 +17,20 @@ export const nav = [
 export const pages = {
   home: {
     hero: {
-      eyebrow: 'Software studio, Utah',
-      title: 'Games, web apps and tools.',
-      lead: 'A small lab that builds things on purpose: multiplayer games with their own servers, sites and apps for clients, and the tools in between.',
+      eyebrow: 'Independent engineering lab, Utah',
+      title: 'Software, systems and fabrication.',
+      lead: 'A small lab that builds things deliberately: multiplayer games and the servers behind them, web platforms for clients, custom hardware, and printed parts.',
       primary: {label:'Get in touch', href:'/#Contact', glass:true},
       secondary: {label:'Current project', href:'/#Mechaclasm'}
     },
     make: {
-      heading: 'What the lab makes',
+      heading: 'Areas of work',
       items: [
-        {tag:'Games', title:'Multiplayer games', text:'Real-time games with their own backends, built in Unity.'},
-        {tag:'Web', title:'Web apps', text:'Sites and apps for clients, from the first sketch to the server they run on.'},
-        {tag:'Tools', title:'Bots and tools', text:'Discord bots and the small tools that make the rest possible.'}
+        {tag:'Interactive', title:'Real-time games', text:'Multiplayer games engineered end to end, from the Unity client to the servers that run it.'},
+        {tag:'Web', title:'Web platforms', text:'Sites and applications for clients, carried from first draft through to the infrastructure they run on.'},
+        {tag:'Tooling', title:'Automation', text:'Discord bots, internal utilities, and the supporting tools the rest of the work depends on.'},
+        {tag:'Hardware', title:'Custom systems', text:'Computers specified around the work they have to do, then assembled and tuned by hand.'},
+        {tag:'Fabrication', title:'Additive manufacturing', text:'Prototypes, functional parts and one-off pieces, 3D printed in-house.'}
       ]
     },
     mechaclasm: {
