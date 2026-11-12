@@ -268,6 +268,21 @@ Open questions. Raise each with Grey, with options and a recommendation, before 
 6. **Cloudflare.** Whether the proxy is on for the bare domain, and whether its email-address obfuscation should
    cover the contact link.
 
+Answered (2026-11-11, from a look at the server over SSH, `-p 2222`, and with Grey):
+
+1. The certificate names `*.by-design.dev` and `by-design.dev`. The bare domain is the address; `www` redirects.
+2. NSSM, already at `D:\nssm`, which runs nginx, ServiceDash and Classroom Audio the same way.
+3. On GitHub's Ubuntu machines (free, the repo is public), for Windows. Every npm package is plain js and
+   `ddp-server`'s uWebSockets.js ships `uws_win32_x64_147.node`, Node 26's. The server's Meteor is 2.x, so not there.
+4. Registered to the Mechaclasm repo, and a personal account can't have account-wide runners: a second runner,
+   `D:\actions-runner-bydesign`, for this repo, as NETWORK SERVICE.
+5. `github.com/Ganakim/By-Design`, public, push-to-deploy.
+6. Proxied, and plain http reaches the server on port 80, so nginx redirects it. Obfuscation has nothing to rewrite:
+   the address is only in the js.
+
+Also: the folder is `D:\By Design` (Grey's choice; an empty `D:\By_Design_Site` was already there and is left alone),
+the site runs as LOCAL SERVICE, and the machine's Node goes from 22.16 to 26.13 (Grey's choice over a private copy).
+
 **Done when** Grey has run the checklist and `https://by-design.dev` serves the site, with Mechaclasm's two addresses
 still answering as before.
 

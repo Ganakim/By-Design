@@ -1,0 +1,67 @@
+# Each push to main (or by hand: Actions > Deploy > Run workflow): built for Windows on one of GitHub's machines, then
+# swapped in on the server by this repo's own runner there (deploy/deploy.ps1). Deployed means the site answers on
+# 127.0.0.1:8092 with the new build. What the server needs, once, is in deploy/README.md.
+#
+# The repo is public and the runner is on the server, so only pushes to main start this (never a pull request), and
+# the repo asks for approval before any outside contributor's workflow runs.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["**/*.md"]
+  workflow_dispatch:
+
+# one at a time; a push mid-swap waits rather than cancelling it
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Meteor
+        run: |
+          curl -s "https://install.meteor.com/?release=$(cut -d@ -f2 .meteor/release)" | sh
+          echo "$HOME/.meteor" >> "$GITHUB_PATH"
+
+      - run: npm ci
+
+      # every npm package is plain js, and ddp-server ships its socket library's windows binary, so building for
+      # windows here works
+      - name: Build for Windows
+        run: |
+          meteor build "$RUNNER_TEMP/out" --server-only --architecture os.windows.x86_64
+          mv "$RUNNER_TEMP"/out/*.tar.gz "$RUNNER_TEMP/site.tar.gz"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: ${{ runner.temp }}/site.tar.gz
+          compression-level: 0
+          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted, windows]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: deploy
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: ${{ runner.temp }}
+
+      - name: Swap it in
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File deploy/deploy.ps1 -From "${{ runner.temp }}\site.tar.gz" -Commit ${{ github.sha }}
